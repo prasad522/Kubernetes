@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pythonapp
+  namespace: test-ns
+spec:
+  # didnt specify any replicas so default 1 pod will be created.
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pythonapp
+  template:
+    metadata:
+      name: pythonapp
+      namespace: test-ns
+      labels:
+        app: pythonapp
+    spec:
+      containers:
+        - name: pythonapp
+          image: prasad522/pythonflaskapp:1
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              cpu: 300m
+              memory: 500Mi
+            limits:
+              cpu: 500m
+              memory: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pythonappsvc
+  namespace: test-ns
+spec:
+  type: LoadBalancer #NodePort
+  selector:
+    app: pythonapp
+  ports:
+    - port: 80
+      targetPort: 5000

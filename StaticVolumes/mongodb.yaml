@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: mongo
+  namespace: test-ns
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: mavenwebapp
+      namespace: test-ns
+      labels:
+        app: mavenwebapp
+      volumes:
+        - name: mongovol
+          hostPath:
+            path: /mongodata/
+      containers:
+        - name: mavenwebapp
+          image: prasad522/mavenwebapp:1
+          ports:
+            - containerPort: 27017
+        volumeMount:
+          - name: monvol
+            mountPath: /data/db/
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: mavenwebappsvc
+  namespace: test-ns
+spec:
+  type: ClusterIP
+  selector:
+    matchLabels:
+      app: mavenwebapp
+    ports:
+      - port: 27017
+        targetPort:27017
+---
+
+    
+
+
+
+        

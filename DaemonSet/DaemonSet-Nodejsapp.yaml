@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nodejsapp-daemonset
+  namespace: test-ns
+spec:
+  selector:
+    matchLabels:
+      app: nodejsapp
+  template:
+    metadata:
+      labels:a
+        app: nodejsapp
+    spec:
+      containers:
+      - name: nodejsapp
+        image: prasad522/nodejsapp:1
+        ports:
+        - containerPort: 9981
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80

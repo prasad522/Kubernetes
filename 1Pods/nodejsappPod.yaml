@@ -1,0 +1,15 @@
+piVersion: v1
+kind: Pod
+metadata:
+  name: nodejspod
+  labels:
+    app: nodejsapp
+    team: developer
+    manager: Suhasini
+  namespace: test-ns
+spec:
+  container:
+    - name: nodejscontainer
+      image: prasad522/nodejsapp:1
+      ports:
+        - containerPort: 9981

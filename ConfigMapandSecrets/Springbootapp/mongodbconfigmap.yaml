@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: springappconfigmap
+  namespace: test-ns
+data:
+ db_username: devdb

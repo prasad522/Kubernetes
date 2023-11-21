@@ -1,0 +1,15 @@
+piVersion: v1
+kind: Pod
+metadata:
+  name: jawebapppod
+  labels:
+    app: javawebapp
+    team: developer
+    manager: Prasad
+  namespace: test-ns
+spec:
+  containers:
+    - name: javawebappcontainer
+      image: prasad522/javawebapp:1
+      ports:
+        - containerPort: 8080

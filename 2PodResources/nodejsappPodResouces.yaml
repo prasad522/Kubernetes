@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nodejspod
+  labels:
+    app: nodejsapp
+    team: developer
+    manager: Suhasini
+  namespace: test-ns
+spec:
+  container:
+    - name: nodejscontainer
+      image: prasad522/nodejsapp:1
+      ports:
+        - containerPort: 9981
+      resources:
+        requests:
+          cpu: 0.5
+          memory: 512Mi
+        limits:
+          cpu: 1
+          memory: 1Gi
+---

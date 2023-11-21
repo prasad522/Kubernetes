@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jawebapppod
+  labels:
+    app: javawebapp
+    team: developer
+    manager: Prasad
+  namespace: test-ns
+spec:
+  containers:
+    - name: javawebappcontainer
+      image: prasad522/javawebapp:1
+      ports:
+        - containerPort: 8080
+      resources:
+        requests:
+          cpu: 0.5
+          memory: 512Mi
+        limits:
+          cpu: 1
+          memory: 1Gi  
+---
